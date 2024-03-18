@@ -1,3 +1,3 @@
 # gks2p
 
-# This code provides wrapper functions for performign multi-plane mesoscope analysis 
+# This code provides wrapper functions for performing multi-plane mesoscope analysis 
