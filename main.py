@@ -38,6 +38,8 @@ ds = datasetQuery(cohort='coh2', week='w22', experiment='contrast', mouseID='M14
 ds = datasetQuery(cohort='coh2', week='w22', experiment='contrast', mouseID='M148',ses='ses2')
 ds = datasetQuery(cohort='coh2', week='w22', experiment='contrast', mouseID='M148',ses='ses3')
 ds = datasetQuery(cohort='coh2', week='w22', experiment='contrast', mouseID='M149')
+ds = datasetQuery(cohort='coh2', week='w22', experiment='contrast', mouseID='M156', ses='ses1')
+ds = datasetQuery(cohort='coh2', week='w22', experiment='contrast', mouseID='M159')
 
 
 # ANALYSIS
@@ -68,7 +70,7 @@ ops = gks2p_loadOps(ds, basepath)
 basepath = '/home/georgioskeliris/Desktop/gkel@NAS/MECP2TUN/'
 gks2p_toBinary(ds, basepath)
 gks2p_register(ds, basepath, iplaneList=None)
-gks2p_segment(ds, basepath, iplaneList=None) # potially can give a list of planes to process
+gks2p_segment(ds, basepath, iplaneList=[10, 11]) # potially can give a list of planes to process
 gks2p_combine(ds, basepath)
 
 gks2p_classify(ds, basepath)
