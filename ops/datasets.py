@@ -13,7 +13,8 @@ from ScanImageTiffReader import ScanImageTiffReader
 #import numpy as np
 
 def datasetQuery(cohort=[], week=[], mouseID=[], ses=None, experiment=None):
-    df = pd.read_csv('/mnt/Toshiba_16TB_1/MECP2_datasets.csv')
+    #df = pd.read_csv('/mnt/Toshiba_16TB_1/MECP2_datasets.csv')
+    df = pd.read_csv('~/GitHub/gks2p/MECP2_datasets.csv')
     if type(cohort) == str:
         cohort = [cohort]
     if type(week) == str:

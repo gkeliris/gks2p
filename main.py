@@ -8,6 +8,8 @@ import suite2p
 from natsort import natsorted
 
 basepath = '/home/georgioskeliris/Desktop/gkel@NAS/MECP2TUN/'
+basepath = '/mnt/sdd/MECP2TUN'
+basepath = '/mnt/Smirnakis_lab_NAS/georgioskeliris/MECP2TUN/'
 
 stavroula_classifier='/mnt/12TB_HDD_6/ThinkmateB_HDD6_Data/Stavroula/Classifier_contrast.npy'
 '''
@@ -41,6 +43,11 @@ ds = datasetQuery(cohort='coh2', week='w22', experiment='contrast', mouseID='M14
 ds = datasetQuery(cohort='coh2', week='w22', experiment='contrast', mouseID='M156', ses='ses1')
 ds = datasetQuery(cohort='coh2', week='w22', experiment='contrast', mouseID='M159')
 
+ds = datasetQuery(cohort='coh3', week='w11', mouseID='M415')
+ds = datasetQuery(cohort='coh3', week='w11', mouseID='M416')
+ds = datasetQuery(cohort='coh3', week='w11', mouseID='M417')
+ds = datasetQuery(cohort='coh3', week='w11', mouseID='M418')
+ds = datasetQuery(cohort='coh3', week='w11', mouseID='M419', ses='ses1')
 
 # ANALYSIS
 
@@ -67,10 +74,10 @@ gks2p_makeOps(ds, basepath, db={})
 ops = gks2p_loadOps(ds, basepath)
         
 # CONVERT TO BINARY
-basepath = '/home/georgioskeliris/Desktop/gkel@NAS/MECP2TUN/'
+#basepath = '/home/georgioskeliris/Desktop/gkel@NAS/MECP2TUN/'
 gks2p_toBinary(ds, basepath)
 gks2p_register(ds, basepath, iplaneList=None)
-gks2p_segment(ds, basepath, iplaneList=[10, 11]) # potially can give a list of planes to process
+gks2p_segment(ds, basepath, iplaneList=None) # potially can give a list of planes to process
 gks2p_combine(ds, basepath)
 
 gks2p_classify(ds, basepath)

@@ -394,3 +394,11 @@ datID,cohort,week,session,mouseID,expID,rawPath,firstTiff
 393,coh3,w22,ses1_20230626,M417,contrast,/mnt/12TB_HDD_4/ThinkmateB_HDD4_Data/Stavroula/Project_Thy1_Tg1/Experiment 26-6-23/M417/Contrast/,M417_Contrast_00001_00001.tif
 394,coh3,w22,ses1_20230629,M420,contrast,/mnt/12TB_HDD_4/ThinkmateB_HDD4_Data/Stavroula/Project_Thy1_Tg1/Experiment 29-6-23/M420/Contrast/,M420_Contrast_00001_00001.tif
 395,coh3,w22,ses1_20230622,M419,contrast,/mnt/12TB_HDD_4/ThinkmateB_HDD4_Data/Stavroula/Project_Thy1_Tg1/Experiment 22-6-23/M419/Contrast,M419_Contrast_00001_00001.tif
+396,coh3,w11,ses1_20230323,M415,contrast,/mnt/MyData/mesoscope_PV_thy1/Thy1_Tg1_11week/M415_Thy1Tg1/contrast,M415_contrast_00001_00001.tif
+397,coh3,w11,ses1_20230321,M416,contrast,/mnt/MyData/mesoscope_PV_thy1/Thy1_Tg1_11week/M416_Thy1_wk11/contrast,M416_contrast_00002_00001.tif
+398,coh3,w11,ses1_20230324,M417,contrast,/mnt/MyData/mesoscope_PV_thy1/Thy1_Tg1_11week/M417Thy1Tg1/contrast,M417_contrast_00001_00001.tif
+399,coh3,w11,ses1_20230326,M418,contrast,/mnt/MyData/mesoscope_PV_thy1/Thy1_Tg1_11week/M418Thy1Tg1/contrast,M418_contrast_00001_00001.tif
+400,coh3,w11,ses1_20230321,M419,contrast,/mnt/MyData/mesoscope_PV_thy1/Thy1_Tg1_11week/M419_Thy1_tg1_wk11/20230321/contrast,M419_contrast_00001_00001.tif
+401,coh3,w11,ses2_20230328,M419,contrast,/mnt/MyData/mesoscope_PV_thy1/Thy1_Tg1_11week/M419_Thy1_tg1_wk11/20230328/contrast2,M419_contrast2_00001_00001.tif
+402,coh3,w11,ses1_20230323,M420,contrast,/mnt/MyData/mesoscope_PV_thy1/Thy1_Tg1_11week/M420_Thy1Tg1/contrast,M420_contrast_00001_00001.tif
+403,coh3,w11,ses1_20230325,M422,contrast,/mnt/MyData/mesoscope_PV_thy1/Thy1_Tg1_11week/M422_Thy1Tg1/contrast,M422_contrast_00001_00001.tif
