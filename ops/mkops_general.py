@@ -12,14 +12,14 @@ import numpy as np
 import suite2p
 
 
-def mkops(basepath, dat, db={}):
+def mkops_general(rawPath, firstTiff, outputPath, db={}):
     
     if 'pipeline' not in db.keys():
         db['pipeline']='orig'
     
     # Create a reader object. Currently using ScanImageTiffReader. Should be
     # adapted for other tiff images.
-    reader = ScanImageTiffReader(os.path.join(dat.rawPath, dat.firstTiff))
+    reader = ScanImageTiffReader(os.path.join(rawPath, firstTiff))
     # Get the tiff dimensions. Currently not used I think
     tiff_dim=reader.shape()
     # Read the header info and convert to a json object
@@ -45,13 +45,6 @@ def mkops(basepath, dat, db={}):
         zs = [zsstr]
     # This is to avoid the fact of a very long list of the same z in some datasets
     zs = list(dict.fromkeys(zs))
-    print('zs=' + str(zs))
-    # This is another way if previous problematic
-    # tmpzs = []
-    # for x in zs:
-    #     if x not in tmpzs:
-    #         tmpzs.append(x)
-    # zs=tmpzs
 
     # Calculate the number of planes
     nplanes = len(zs)
@@ -70,37 +63,20 @@ def mkops(basepath, dat, db={}):
     if type(rois_zs[0]) is list:
         rois_zs = set(sum(rois_zs,[]))
 
-    # Exceptions
-    if (dat.cohort=='coh1') & (dat.mouseID=='M25') & (dat.week=='w11'):
-        whichplane=[0, 0, 1, 1]
-        whichroi=[0, 1, 0, 1]
-        whichscanfield=[0, 0, 0, 0]
-        nroisPerPlane=np.array([2, 2])
-    elif (dat.cohort=='coh1') & (dat.mouseID=='M117') & (dat.week=='w22'):
-        whichplane=[0, 0, 1, 1, 2, 2]
-        whichroi=[0, 1, 0, 1, 0, 1]
-        whichscanfield=[0, 0, 0, 0, 0, 0]
-        nroisPerPlane=np.array([2, 2, 2])
-    elif len(rois_zs) < len(zs): # This probably solves the above two as well
-        whichplane =sum([[f] * nrois for f in range(nplanes)],[])
-        whichroi=sum([[f for f in range(nrois)] * nplanes],[])
-        whichscanfield=[0] * (nrois * nplanes)
-        nroisPerPlane=np.array([nrois] * nplanes)
-        print('special case\n')
-    else: # read values of rois per plane etc. to later loop and get info
-        nroisPerPlane = np.zeros(nplanes)
-        whichplane = []
-        whichroi = []
-        whichscanfield=[]
-        for p in range(0, nplanes):
-            for kk in range(0, nrois):
-                if np.any(np.isin(si_rois[kk]['zs'], int(zs[p]))):
-                    nroisPerPlane[p] = nroisPerPlane[p]+1
-                    whichplane.append(p)
-                    whichroi.append(kk)
-                    tmp=np.where(np.array(si_rois[kk]['zs'])==int(zs[p]))
-                    whichscanfield.append(tmp[0][0])
-    
+  
+    nroisPerPlane = np.zeros(nplanes)
+    whichplane = []
+    whichroi = []
+    whichscanfield=[]
+    for p in range(0, nplanes):
+        for kk in range(0, nrois):
+            if np.any(np.isin(si_rois[kk]['zs'], int(zs[p]))):
+                nroisPerPlane[p] = nroisPerPlane[p]+1
+                whichplane.append(p)
+                whichroi.append(kk)
+                tmp=np.where(np.array(si_rois[kk]['zs'])==int(zs[p]))
+                whichscanfield.append(tmp[0][0])
+
     #nplanes = len(np.unique(whichplane))
     
     # Loop across planes and extact info of each ROI
@@ -218,12 +194,10 @@ def mkops(basepath, dat, db={}):
             ops['dy'].append(int(iminY[i]))
             ops['lines'].append([x for x in range(int(irow1[i]),int(irow2[i]))])
     # add the paths for the data        
-    ops['data_path'] = [dat.rawPath]
-    ops['save_path0'] = os.path.join(basepath, 's2p_analysis', dat.cohort, 
-            dat.mouseID, dat.week, dat.session, dat.expID)
+    ops['data_path'] = rawPath
+    ops['save_path0'] = outputPath
     ops['save_folder'] = 'suite2p_' + db['pipeline']
-    ops['fast_disk'] = os.path.join(basepath, 's2p_binaries', dat.cohort, 
-                            dat.mouseID, dat.week, dat.session, dat.expID)
+    ops['fast_disk'] = outputPath
     
     ops = {**ops, **db}
     # create folders

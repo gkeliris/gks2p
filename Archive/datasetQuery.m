@@ -8,7 +8,7 @@ for i = 1:2:length(varargin) % work for a list of name-value pairs
 end
 prm.make = 1;
 % read the table from the CSV file
-T = readtable('~/GitHub/gks2p/MECP2_datasets.csv','TextType','string');
+T = readtable('/mnt/NAS_UserStorage/georgioskeliris/MECP2TUN/MECP2_datasets.csv','TextType','string');
 
 if ~isfield(prm, 'cohort')
     prm.cohort = unique(T.cohort);

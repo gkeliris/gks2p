@@ -2,14 +2,15 @@
 # from ops import mkops # <-- imports the whole file not the function inside
 
 from ops.mkops import *
+from ops.mkops_general import *
 from ops.datasets import *
 from gks2p_utils.preprocess import *
 import suite2p
 from natsort import natsorted
 
-basepath = '/home/georgioskeliris/Desktop/gkel@NAS/MECP2TUN/'
-basepath = '/mnt/sdd/MECP2TUN'
-basepath = '/mnt/Smirnakis_lab_NAS/georgioskeliris/MECP2TUN/'
+# basepath = '/home/georgioskeliris/Desktop/gkel@NAS/MECP2TUN/'
+# basepath = '/mnt/sdd/MECP2TUN'
+basepath = '/mnt/NAS_UserStorage/georgioskeliris/MECP2TUN/'
 
 stavroula_classifier='/mnt/12TB_HDD_6/ThinkmateB_HDD6_Data/Stavroula/Classifier_contrast.npy'
 '''
@@ -19,8 +20,23 @@ ds = getOneSesPath('coh1', 'w11', 'M10', 'ses1', 'OO')
 '''
        
 ds = datasetQuery(cohort='coh1', week='w11', mouseID='M10', ses='ses1', experiment='OO') 
-ds = datasetQuery(cohort='coh1', week='w11', mouseID='M11', experiment='contrast')  
+ds = datasetQuery(cohort='coh1', week='w11', mouseID='M11', experiment='contrast') 
+ds = datasetQuery(cohort='coh1', week='w11', mouseID='M11', experiment='OR') 
+ds = datasetQuery(cohort='coh1', week='w11', mouseID='M12', experiment='contrast')
+ds = datasetQuery(cohort='coh1', week='w11', mouseID='M18', experiment='contrast')
+ds = datasetQuery(cohort='coh1', week='w11', mouseID='M19', experiment='contrast')      
 ds = datasetQuery(cohort='coh1', week='w11', mouseID='M20', experiment='contrast')
+ds = datasetQuery(cohort='coh1', week='w11', mouseID='M22', experiment='contrast')  
+ds = datasetQuery(cohort='coh1', week='w11', mouseID='M25', experiment='contrast')  
+ds = datasetQuery(cohort='coh1', week='w11', mouseID='M91', experiment='contrast')  
+
+ds = datasetQuery(cohort='coh1', week='w22', mouseID='M11', experiment='contrast')  
+ds = datasetQuery(cohort='coh1', week='w22', mouseID='M12', experiment='contrast')  
+ds = datasetQuery(cohort='coh1', week='w22', mouseID='M18', experiment='contrast')  
+ds = datasetQuery(cohort='coh1', week='w22', mouseID='M19', experiment='contrast')  
+ds = datasetQuery(cohort='coh1', week='w22', mouseID='M20', experiment='contrast')  
+ds = datasetQuery(cohort='coh1', week='w22', mouseID='M22', experiment='contrast')  
+ds = datasetQuery(cohort='coh1', week='w22', mouseID='M117', experiment='contrast')  
 
 ds = datasetQuery(cohort='coh2', week='w11', experiment='contrast')
 ds = datasetQuery(cohort='coh2', week='w11', experiment='contrast', mouseID='M24')

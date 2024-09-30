@@ -10,11 +10,11 @@ import pandas as pd
 import numpy as np
 import suite2p
 from ScanImageTiffReader import ScanImageTiffReader
-#import numpy as np
-
-def datasetQuery(cohort=[], week=[], mouseID=[], ses=None, experiment=None):
-    #df = pd.read_csv('/mnt/Toshiba_16TB_1/MECP2_datasets.csv')
-    df = pd.read_csv('~/GitHub/gks2p/MECP2_datasets.csv')
+defaultCsvPath = '/mnt/NAS_UserStorage/georgioskeliris/MECP2TUN/MECP2_datasets.csv'
+def datasetQuery(csvFilePath=defaultCsvPath,
+                 cohort=[], week=[], mouseID=[], ses=None, experiment=None):
+    # read the datasets.csvs
+    df = pd.read_csv(csvFilePath)
     if type(cohort) == str:
         cohort = [cohort]
     if type(week) == str:
