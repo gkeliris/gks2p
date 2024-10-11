@@ -116,6 +116,8 @@ def mkops_general(rawPath, firstTiff, outputPath, db={}):
 
     # deduce flyback from most filled z-plane    
     n_flyback = np.min(n_flybackP)
+    print(n_flybackP)
+    print(n_flyback)
 
     # Calculate some values to extract the rows in the tiff files for each ROI
     muX=[]; muY=[]; iminX=[]; iminY=[]; irow1=[]; irow2=[]; allLx=[]; allLy=[]
