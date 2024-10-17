@@ -6,6 +6,7 @@ from ops.mkops_general import *
 from ops.datasets import *
 from gks2p_utils.preprocess import *
 import suite2p
+import cellpose
 from natsort import natsorted
 
 # basepath = '/home/georgioskeliris/Desktop/gkel@NAS/MECP2TUN/'
@@ -19,7 +20,7 @@ ds = getOneExpPath('coh1','w11','M19','contrast')
 ds = getOneSesPath('coh1', 'w11', 'M10', 'ses1', 'OO')
 '''
        
-ds = datasetQuery(cohort='coh1', week='w11', mouseID='M10', ses='ses1', experiment='OO') 
+ds = datasetQuery(cohort='coh1', week='w11', mouseID='M10', ses='ses1', experiment='DR') 
 ds = datasetQuery(cohort='coh1', week='w11', mouseID='M11', experiment='contrast') 
 ds = datasetQuery(cohort='coh1', week='w11', mouseID='M11', experiment='OR') 
 ds = datasetQuery(cohort='coh1', week='w11', mouseID='M12', experiment='contrast')
