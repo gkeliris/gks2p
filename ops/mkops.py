@@ -12,7 +12,7 @@ import numpy as np
 import suite2p
 import scanreader
 
-def mkops(basepath, dat, db={}):
+def mkops(savepath0, dat, db={}, fastdisk=None):
     
     if 'pipeline' not in db.keys():
         db['pipeline']='orig'
@@ -115,20 +115,23 @@ def mkops(basepath, dat, db={}):
             ops['lines'].append(
                 np.arange(field_info.yslices[0].start, field_info.yslices[0].stop)
             )
+        #remove potentially negative numbers from ops['dy']
+        ops['dy']=list(np.array(ops['dy'])-min(np.array(ops['dy'])))
         print(ops['dx'])
         print(ops['dy'])
+
     # add the paths for the data        
     ops['data_path'] = [dat.rawPath]
-    ops['save_path0'] = os.path.join(basepath, 's2p_analysis', dat.cohort, 
-            dat.mouseID, dat.week, dat.session, dat.expID)
+    ops['save_path0'] = savepath0
     ops['save_folder'] = 'suite2p_' + db['pipeline']
-    ops['fast_disk'] = os.path.join(basepath, 's2p_binaries', dat.cohort, 
-                            dat.mouseID, dat.week, dat.session, dat.expID)
+    if fastdisk != None:
+        ops['fast_disk'] = fastdisk
     
     ops = {**ops, **db}
     # create folders
     os.makedirs(ops['save_path0'], exist_ok=True)
-    os.makedirs(ops['fast_disk'], exist_ok=True)
+    if fastdisk != None:
+        os.makedirs(ops['fast_disk'], exist_ok=True)
     # save the ops
     np.save(os.path.join(ops['save_path0'], 'ops_' + db['pipeline']),ops)
 
