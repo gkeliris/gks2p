@@ -1,6 +1,6 @@
 # the way below then you would need to call mkops.mkops(...)
 # from ops import mkops # <-- imports the whole file not the function inside
-
+cd "~/GitHub/gks2p"
 from ops.mkops import *
 from ops.mkops_general import *
 from ops.datasets import *
