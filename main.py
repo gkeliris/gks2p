@@ -98,6 +98,9 @@ ds = datasetQuery(cohort='coh4', mouseID="M493", experiment='contrast')
 
 ds = datasetQuery(cohort='coh4', mouseID="M488", experiment='contrast')
 ds=ds[ds.datID==415]
+
+ds = datasetQuery(cohort='coh3', week='w22', mouseID="M419", experiment='contrast')
+
 # ANALYSIS
 
 # In case you need to change some of the default OPS parameters put them here:
@@ -126,7 +129,7 @@ ops2 = gks2p_loadOps(ds, basepath)
 #basepath = '/home/georgioskeliris/Desktop/gkel@NAS/MECP2TUN/'
 gks2p_toBinary(ds, basepath)
 gks2p_register(ds, basepath, iplaneList=None)
-gks2p_segment(ds, basepath, iplaneList=[3]) # potentially can give a list of planes to process
+gks2p_segment(ds, basepath, iplaneList=None) # potentially can give a list of planes to process
 gks2p_combine(ds, basepath)
 
 gks2p_classify(ds, basepath)
