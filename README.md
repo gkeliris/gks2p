@@ -20,13 +20,18 @@ This code uses modified suite2p that can be used in modules
 ### In case of problems / optional 
 - optional in case not working
     > sudo apt-get install libegl1
+
     > conda install pyqt
+
     > pip uninstall PyQt6
+
     > pip install PyQt5
     
 - install scipy / pandas / spyder in case not installed with environment
     > conda install pandas
+
     > conda install scipy
+
     > conda install spyder
 - install VSCODE in case not already installed
     > sudo snap install code --classic
