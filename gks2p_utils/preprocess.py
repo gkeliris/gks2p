@@ -16,6 +16,7 @@ from pathlib import Path
 from natsort import natsorted
 import shutil
 import os
+import scipy.io
 
 def clear_all():
     """Clears all the variables from the workspace of the spyder application."""
@@ -62,12 +63,39 @@ def gks2p_loadOps(ds, basepath, pipeline="orig"):
         opsPath.append(os.path.join(gks2p_path(dat,basepath), 'ops_' + pipeline + '.npy'))
     ops = [np.load(f, allow_pickle=True).item() for f in opsPath]
     return ops
-
+      
 def gks2p_loadOpsPerPlane(save_folder):
     plane_folders = natsorted([ f.path for f in os.scandir(save_folder) if f.is_dir() and f.name[:5]=='plane'])
     ops1 = [np.load(os.path.join(f, 'ops.npy'), allow_pickle=True).item() for f in plane_folders]
     
     return ops1
+
+def gks2p_opsPerPlane_saveAsMat(ds, basepath, pipeline="orig"):
+    for d in range(len(ds)):
+        dat = ds.iloc[d]
+        save_folder = os.path.join(gks2p_path(dat,basepath),'suite2p_' + pipeline)
+        plane_folders = natsorted([ f.path for f in os.scandir(save_folder) if f.is_dir() and f.name[:5]=='plane'])
+        ops1 = [np.load(os.path.join(f, 'ops.npy'), allow_pickle=True).item() for f in plane_folders]
+        for p in range(len(ops1)):
+            scipy.io.savemat(os.path.join(plane_folders[p],'ops.mat'),ops1[p])
+    return
+    
+def gks2p_ops_saveAsMat(ds, basepath, pipeline="orig"):
+    ops = gks2p_loadOps(ds, basepath, pipeline="orig")
+    for d in range(len(ds)):
+        dat = ds.iloc[d]
+        dirPath = os.path.join(gks2p_path(dat,basepath),'suite2p_' + pipeline,'combined')
+        scipy.io.savemat(os.path.join(dirPath,'ops.mat'),ops[d])
+    return
+    
+def gks2p_stat_saveAsMat(dat, basepath, pipeline="orig"):
+    dirPath = os.path.join(gks2p_path(dat,basepath),'suite2p_' + pipeline,'combined')
+    os.makedirs(os.path.join(dirPath, 'stat_mat'), exist_ok=True)
+    stat = np.load(os.path.join(dirPath,'stat.npy'),allow_pickle=True)
+    for c in range(len(stat)):
+        scipy.io.savemat(os.path.join(dirPath,'stat_mat','stat_' + str(c+1) + '.mat'),stat[c])
+    return
+
 
 def gks2p_updateOpsPaths(ds, basepath, fastbase=None, pipeline="orig"):
     if fastbase==None:
